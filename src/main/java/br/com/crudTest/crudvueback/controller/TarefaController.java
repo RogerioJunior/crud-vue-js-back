@@ -31,6 +31,7 @@ public class TarefaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping
     public Tarefa create(@RequestBody Tarefa tarefa){
         return repository.save(tarefa);
