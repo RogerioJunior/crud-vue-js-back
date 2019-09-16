@@ -19,17 +19,18 @@ public class TarefaController {
         this.repository = tarefaRepository;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping
     public List findAll(){
         return repository.findAll();
     }
 
-    @GetMapping(path = {"/{id}"})
-    public ResponseEntity findById(@PathVariable long id){
-        return repository.findById(id)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
-    }
+//    @GetMapping(path = {"/{id}"})
+//    public ResponseEntity findById(@PathVariable long id){
+//        return repository.findById(id)
+//                .map(record -> ResponseEntity.ok().body(record))
+//                .orElse(ResponseEntity.notFound().build());
+//    }
 
     @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping
@@ -37,6 +38,7 @@ public class TarefaController {
         return repository.save(tarefa);
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping(value="/{id}")
     public ResponseEntity update(@PathVariable("id") long id,
                                  @RequestBody Tarefa tarefa) {
@@ -50,6 +52,7 @@ public class TarefaController {
                 }).orElse(ResponseEntity.notFound().build());
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @DeleteMapping(path ={"/{id}"})
     public ResponseEntity<?> delete(@PathVariable long id) {
         return repository.findById(id)
